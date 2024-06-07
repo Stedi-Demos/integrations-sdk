@@ -1,6 +1,6 @@
 inputs:
   ENG_GITHUB_TOKEN:
-    description: "token used to fetch privat  repos"
+    description: "token used to fetch private repos"
     required: true
 
 name: "Setup environment"
@@ -19,11 +19,3 @@ runs:
     - uses: de-vri-es/setup-git-credentials@5e1f18da68b7039c7f824408d170811aaec93ca8 # v2
       with:
         credentials: https://stedi-engineering:${{ inputs.ENG_GITHUB_TOKEN }}@github.com/
-    - uses: Swatinem/rust-cache@9bdad043e88c75890e36ad3bbc8d27f0090dd609
-    - if: steps.npm-cache.outputs.cache-hit != 'true'
-      name: Install dependencies
-      shell: bash
-      env:
-        GITHUB_TOKEN: ${{ inputs.ENG_GITHUB_TOKEN }}
-        CI: "true"
-      run: npm ci
