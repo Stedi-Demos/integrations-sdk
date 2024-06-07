@@ -19,7 +19,6 @@ runs:
     - uses: de-vri-es/setup-git-credentials@5e1f18da68b7039c7f824408d170811aaec93ca8 # v2
       with:
         credentials: https://stedi-engineering:${{ inputs.ENG_GITHUB_TOKEN }}@github.com/
-    - name: install deps
     - if: steps.npm-cache.outputs.cache-hit != 'true'
       name: Install dependencies
       shell: bash
