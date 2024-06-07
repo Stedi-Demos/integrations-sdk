@@ -1,0 +1,29 @@
+inputs:
+  ENG_GITHUB_TOKEN:
+    description: "token used to fetch privat  repos"
+    required: true
+
+name: "Setup environment"
+runs:
+  using: "composite"
+  steps:
+    - name: Setup Node.js
+      uses: actions/setup-node@1a4442cacd436585916779262731d5b162bc6ec7 # v3
+      with:
+        node-version-file: "package.json"
+    - uses: actions/cache@e12d46a63a90f2fae62d114769bbf2a179198b5c # v3
+      id: npm-cache
+      with:
+        path: "**/node_modules"
+        key: ${{ runner.os }}-node-pr-${{ hashFiles('**/package-lock.json') }}
+    - uses: de-vri-es/setup-git-credentials@5e1f18da68b7039c7f824408d170811aaec93ca8 # v2
+      with:
+        credentials: https://stedi-engineering:${{ inputs.ENG_GITHUB_TOKEN }}@github.com/
+    - uses: Swatinem/rust-cache@9bdad043e88c75890e36ad3bbc8d27f0090dd609
+    - if: steps.npm-cache.outputs.cache-hit != 'true'
+      name: Install dependencies
+      shell: bash
+      env:
+        GITHUB_TOKEN: ${{ inputs.ENG_GITHUB_TOKEN }}
+        CI: "true"
+      run: npm ci
