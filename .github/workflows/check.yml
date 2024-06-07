@@ -28,7 +28,5 @@ jobs:
       - uses: "./.github/actions/setup"
         with:
           ENG_GITHUB_TOKEN: ${{ secrets.ENG_GITHUB_TOKEN }}
-      - name: I can haz ava?
-        run: npm ls ava
       - name: Run unit tests
         run: npm run test
