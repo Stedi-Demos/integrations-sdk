@@ -19,6 +19,7 @@ export const CoreFileProcessedV2EventSchema = EventHeaderSchema.extend({
               "application/edifact",
               "application/filepart",
               "application/json",
+              "application/pdf",
               "application/xml",
               "application/zip",
               "text/csv",
