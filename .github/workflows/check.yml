@@ -1,0 +1,32 @@
+name: check
+on:
+  workflow_dispatch: {}
+  push:
+    branches:
+      - main
+  pull_request:
+    types:
+      - opened
+      - synchronize
+      - reopened
+jobs:
+  check:
+    name: pr-success
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      actions: write
+      pull-requests: write
+      checks: write
+    env:
+      GITHUB_TOKEN: ${{ secrets.ENG_GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@f43a0e5ff2bd294095638e18286ca9a3d1956744 # v3
+        with:
+          token: ${{ secrets.ENG_GITHUB_TOKEN }}
+
+      - uses: "./.github/actions/setup"
+        with:
+          ENG_GITHUB_TOKEN: ${{ secrets.ENG_GITHUB_TOKEN }}
+      - name: Run unit tests
+        run: npm run test

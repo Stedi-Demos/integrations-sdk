@@ -7,13 +7,21 @@ interface FailureResponseParams {
   invocationIds: StediPluginInvocationIdentifiers;
   message: string;
   details?: Record<string, unknown>;
+  logs?: StediPluginInvocationResult["logs"];
 }
 
 export const failureResponse = ({
   invocationIds,
   message,
-  details,
+  details = {},
+  logs = [],
 }: FailureResponseParams): StediPluginInvocationResult => {
+  logs.push({
+    level: "ERROR",
+    message,
+    details,
+  });
+
   return {
     invocationId: invocationIds.invocationId,
     namespace: invocationIds.namespace,
@@ -21,12 +29,6 @@ export const failureResponse = ({
     configurationId: invocationIds.configurationId,
     status: "ERROR",
     output: [],
-    logs: [
-      {
-        level: "ERROR",
-        message,
-        details,
-      },
-    ],
+    logs,
   };
 };
