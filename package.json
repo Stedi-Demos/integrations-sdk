@@ -59,7 +59,7 @@
     "@stedi/sdk-token-provider-aws-identity": "0.2.9",
     "@types/cli-progress": "3.11.5",
     "@types/fs-extra": "11.0.4",
-    "@types/node": "20.8.0",
+    "@types/node": "20.14.2",
     "@types/yargs": "17.0.32",
     "@typescript-eslint/eslint-plugin": "5.61.0",
     "@typescript-eslint/parser": "5.61.0",
@@ -95,7 +95,7 @@
     }
   },
   "volta": {
-    "node": "18.20.3",
+    "node": "20.14.0",
     "npm": "9.9.3"
   }
 }
