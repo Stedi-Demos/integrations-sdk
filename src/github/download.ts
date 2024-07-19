@@ -231,7 +231,7 @@ export const download = async (
       config?.token
         ? {
             headers: {
-              Authorization: `Bearer ${config?.token}`,
+              Authorization: `Bearer ${config.token}`,
             },
           }
         : undefined
