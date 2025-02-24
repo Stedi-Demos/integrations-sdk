@@ -1,6 +1,6 @@
 {
   "name": "@stedi/integrations-sdk",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Stedi Integrations SDK",
   "type": "module",
   "scripts": {
@@ -57,7 +57,6 @@
     "@smithy/util-stream-node": "2.2.0",
     "@stedi/sdk-client-as2": "0.4.78",
     "@stedi/sdk-client-buckets": "0.4.78",
-    "@stedi/sdk-client-edi-translate": "0.4.78",
     "@stedi/sdk-client-events": "0.4.78",
     "@stedi/sdk-client-functions": "0.4.78",
     "@stedi/sdk-client-guides": "0.4.78",
